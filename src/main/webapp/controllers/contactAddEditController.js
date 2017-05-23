@@ -1,6 +1,6 @@
 var contactAddEditController;
 
-contactAddEditController = function($scope, $http) {
+contactAddEditController = function($scope, $log, $http) {
 	$scope.contact = {};
 	$scope.contact.emails = [''];
 	$scope.contact.phones = [''];
@@ -8,12 +8,32 @@ contactAddEditController = function($scope, $http) {
 	
 	$scope.save = function() {
 
-		$scope.submitted = true;
-
 		if ($scope.contact.name != null && $scope.contact.name != "") {
 
 			// Chamar o servlet /contacts com um método 'POST' para salvar um contato no banco de dados.
+			$http({
+			    method : 'POST',
+			    url : '/contacts',
+			    data :  $scope.contact
+			    }).success(function(data) {
+			    console.log(data);
+			    if(data.error){
+			    	 var errorMessage = resp.error.message || '';
+			    	  $scope.messages = 'Erro ao criar um contato. : ' + errorMessage;
+                      $scope.alertStatus = 'warning';
+                      $log.error($scope.messages + ' Contato : ' + JSON.stringify($scope.conference));
+                      return;
+			    }else{
+			    	// The request has succeeded.
+                    $scope.messages = 'O contato '+ data.name+' foi criado com sucesso!';
+                    $scope.alertStatus = 'success';
+                    $scope.submitted = false;
+                    $scope.conference = {};
+                    $log.info($scope.messages + ' : ' + JSON.stringify(data));
+			    }
+			});
 		}
+		$scope.submitted = true;
 
 	};
 

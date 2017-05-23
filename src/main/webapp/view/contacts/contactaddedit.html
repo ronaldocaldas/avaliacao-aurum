@@ -1,5 +1,16 @@
 <form class="form-horizontal" ng-controller="contactAddEditController" ng-model="contact">
 
+	<div class="row">
+        <div class="col-lg-12">
+            <div id="messages" class="alert alert-{{alertStatus}}" ng-show="messages">
+                <span ng-bind="messages"></span>
+                <i class="dismiss-messages pull-right glyphicon glyphicon-remove" ng-click="messages = ''"
+                   ng-show="messages"></i>
+            </div>
+            <img class="spinner" src="/img/ajax-loader.gif" ng-show="loading"/>
+        </div>
+    </div>
+    
 	<div class="app-page-header">
 		<div class="page-title">
 			<h3 >Adicionar contato</h3>
@@ -19,17 +30,17 @@
 	<div class="form-group">
 		<label for="lastname" class="col-sm-2 control-label">Nascimento</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="lastname"
+			<input type="text" class="form-control" id="birthDay"
 				placeholder="Dia" ng-model="contact.birthDay">
 		</div>
 
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="lastname"
+			<input type="text" class="form-control" id="birthMonth"
 				placeholder="Mes" ng-model="contact.birthMonth">
 		</div>
 
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="lastname"
+			<input type="text" class="form-control" id="birthYear"
 				placeholder="Ano" ng-model="contact.birthYear">
 		</div>
 	</div>
@@ -37,13 +48,13 @@
 	<div class="form-group">
 		<label for="lastname" class="col-sm-2 control-label">CPF</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" id="lastname"
+			<input type="text" class="form-control" id="cpf"
 				placeholder="Digite o cpf" ng-model="contact.cpf">
 		</div>
 
 		<label for="lastname" class="col-sm-1 control-label">RG</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" id="lastname"
+			<input type="text" class="form-control" id="rg"
 				placeholder="Digite o rg" ng-model="contact.rg">
 		</div>
 	</div>
@@ -65,7 +76,7 @@
 		<label for="lastname" class="col-sm-2 control-label">Email</label>
 		<div class="col-sm-6" >
 			<div ng-repeat='email in contact.emails track by $index' class="input-group repeater">
-				<input type="text" class="form-control" id="lastname" placeholder="Digite o email"  ng-model='contact.emails[$index]'>
+				<input type="text" class="form-control" id="email" placeholder="Digite o email"  ng-model='contact.emails[$index]'>
 				<span class="input-group-btn">
         			<button class="btn mybtn" type="button" ng-click='deleteEmail($index)'><span class="glyphicon glyphicon-remove "></span></button>
       			</span>
