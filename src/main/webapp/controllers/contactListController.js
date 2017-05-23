@@ -1,6 +1,6 @@
 var contactListController;
 
-contactListController = function($scope, $http) {
+contactListController = function($scope, $log, $http) {
 	$scope.contacts = [];
 	$scope.preDeletedContact = {};
 
@@ -31,7 +31,23 @@ contactListController = function($scope, $http) {
 			    url : '/contacts',
 			    data :  $scope.preDeletedContact
 			    }).success(function(data) {
-			    console.log(data);
+			    if(data.error){
+			    	 var errorMessage = resp.error.message || '';
+			    	  $scope.messages = 'Erro ao excluir  o contato. : ' + errorMessage;
+                      $scope.alertStatus = 'warning';
+                      $log.error($scope.messages + ' Contato : ' + JSON.stringify($scope.preDeletedContact));
+                      return;
+			    }else{
+			    	// The request has succeeded.
+                    $scope.messages = 'O contato '+ $scope.preDeletedContact.name+' foi excluido com sucesso!';
+                    $scope.alertStatus = 'success';
+                    $scope.submitted = false;
+                    var index = $scope.contacts.indexOf($scope.preDeletedContact);
+	                 // Remove user from array
+	                 $scope.contacts.splice(index, 1);
+                    $log.info($scope.messages + ' : ' + JSON.stringify($scope.preDeletedContact));
+                    $('#myModal').modal('hide');
+			    }
 			});
 		}
 	};

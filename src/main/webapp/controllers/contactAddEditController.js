@@ -16,19 +16,17 @@ contactAddEditController = function($scope, $log, $http) {
 			    url : '/contacts',
 			    data :  $scope.contact
 			    }).success(function(data) {
-			    console.log(data);
 			    if(data.error){
 			    	 var errorMessage = resp.error.message || '';
 			    	  $scope.messages = 'Erro ao criar um contato. : ' + errorMessage;
                       $scope.alertStatus = 'warning';
-                      $log.error($scope.messages + ' Contato : ' + JSON.stringify($scope.conference));
+                      $log.error($scope.messages + ' Contato : ' + JSON.stringify($scope.contact));
                       return;
 			    }else{
 			    	// The request has succeeded.
                     $scope.messages = 'O contato '+ data.name+' foi criado com sucesso!';
                     $scope.alertStatus = 'success';
                     $scope.submitted = false;
-                    $scope.conference = {};
                     $log.info($scope.messages + ' : ' + JSON.stringify(data));
 			    }
 			});
