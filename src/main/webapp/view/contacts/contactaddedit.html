@@ -28,7 +28,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="lastname" class="col-sm-2 control-label">Nascimento</label>
+		<label for="birthDay" class="col-sm-2 control-label">Nascimento</label>
 		<div class="col-sm-2">
 			<input type="text" class="form-control" id="birthDay"
 				placeholder="Dia" ng-model="contact.birthDay">
@@ -46,13 +46,13 @@
 	</div>
 
 	<div class="form-group">
-		<label for="lastname" class="col-sm-2 control-label">CPF</label>
+		<label for="cpf" class="col-sm-2 control-label">CPF</label>
 		<div class="col-sm-4">
 			<input type="text" class="form-control" id="cpf"
 				placeholder="Digite o cpf" ng-model="contact.cpf">
 		</div>
 
-		<label for="lastname" class="col-sm-1 control-label">RG</label>
+		<label for="rg" class="col-sm-1 control-label">RG</label>
 		<div class="col-sm-4">
 			<input type="text" class="form-control" id="rg"
 				placeholder="Digite o rg" ng-model="contact.rg">
@@ -73,7 +73,7 @@
 	</div>
 
 	<div class="form-group">
-		<label for="lastname" class="col-sm-2 control-label">Email</label>
+		<label for="email" class="col-sm-2 control-label">Email</label>
 		<div class="col-sm-6" >
 			<div ng-repeat='email in contact.emails track by $index' class="input-group repeater">
 				<input type="text" class="form-control" id="email" placeholder="Digite o email"  ng-model='contact.emails[$index]'>
