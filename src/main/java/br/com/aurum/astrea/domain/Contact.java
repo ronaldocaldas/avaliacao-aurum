@@ -27,6 +27,24 @@ public class Contact {
 	private String address;
 
 	private String observation;
+	
+	public Contact() {
+	}
+
+	public Contact(Long id, String name, String birthDay, String birthMonth, String birthYear, String cpf, String rg,
+			List<String> phones, List<String> emails, String address, String observation) {
+		this.id = id;
+		this.name = name;
+		this.birthDay = birthDay;
+		this.birthMonth = birthMonth;
+		this.birthYear = birthYear;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.phones = phones;
+		this.emails = emails;
+		this.address = address;
+		this.observation = observation;
+	}
 
 	public String getName() {
 		return name;

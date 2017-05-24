@@ -15,7 +15,6 @@ public class ContactDao {
 	}
 	
 	public void save(Contact contact) {
-		// TODO: É preciso pesquisar como se usa o Objectify para armazenar a entidade contato no banco de dados.
 		ObjectifyService.ofy().save().entities(contact).now();		
 	}
 	
@@ -26,12 +25,10 @@ public class ContactDao {
 	}
 	
 	public void delete(Long contactId) throws UnauthorizedException {
-		// TODO: É preciso pesquisar como se usa o Objectify para deletar entidades do banco de dados.
 		Contact contact = ObjectifyService.ofy().load().key(Key.create(Contact.class, contactId)).now();
 		if(contact == null){
 			throw new UnauthorizedException("Authorization required");
 		}
-		
 			ObjectifyService.ofy().delete().entity(contact);
 		}
 		
